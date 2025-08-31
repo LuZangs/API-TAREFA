@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de Tarefas</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" media="all" href="../../css/style.css"  />
+</head>
+<body>
+
+<!-- form com th:object para preencher os valores -->
+<form method="POST" th:action="@{/tarefas/editar}" th:object="${tarefa}">
+    
+    <!-- Campo oculto com ID -->
+    <input type="hidden" th:field="*{id}" />
+
+    <div class="mb-3">
+        <label for="nome" class="form-label">Nome da Tarefa</label>
+        <input type="text" class="form-control" id="nome" th:field="*{nome}" />
+    </div>
+
+    <div class="mb-3">
+        <label for="datacriacao" class="form-label">Data entrega: </label>
+        <input type="date" class="form-control" id="datacriacao" th:field="*{dataEntrega}" />
+    </div>
+
+    <div class="mb-3">
+        <label for="responsavel" class="form-label">Responsável: </label>
+        <input type="text" class="form-control" id="responsavel" th:field="*{responsavel}" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+
+<div>&copy; 2024 modelo estático</div>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciador de Tarefas</title>
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" media="all" href="../../../css/style.css" />
+</head>
+
+<body class="container mt-4">
+
+    <h1 class="mb-4">Lista de Tarefas</h1>
+
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Identificação</th>
+                <th>Nome</th>
+                <th>Data de Entrega</th>
+                <th>Responsável</th>
+                <th class="text-center">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="tarefa : ${tarefas}">
+                <td th:text="${tarefa.id}">1</td>
+                <td th:text="${tarefa.nome}">Criação de conteúdo</td>
+                <td th:text="${#temporals.format(tarefa.dataEntrega, 'dd/MM/yyyy')}">15/08/2024</td>
+                <td th:text="${tarefa.responsavel}">Luciane</td>
+                <td class="text-center">
+                    <a class="btn btn-warning btn-sm me-2"
+                       th:href="@{/tarefas/editar/{id}(id=${tarefa.id})}">
+                        Editar
+                    </a>
+                    <a class="btn btn-danger btn-sm"
+                       th:href="@{/tarefas/excluir/{id}(id=${tarefa.id})}"
+                       onclick="return confirm('Tem certeza que deseja excluir esta tarefa?');">
+                        Excluir
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" th:href="@{/tarefas/cadastro}">Nova Tarefa</a>
+
+    <footer class="mt-4 text-center">
+        <div>&copy; 2024 Gerenciador de Tarefas</div>
+    </footer>
+
+</body>
+</html>
